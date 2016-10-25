@@ -4,6 +4,7 @@ Database Management Systems Class Project for Fall 2016
 Team Memebers:
 Mark Black,
 Tao Xie,  
+Abdulrahman Alharbi,
 
 Git Commands:
 
