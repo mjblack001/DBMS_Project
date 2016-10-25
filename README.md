@@ -5,6 +5,7 @@ Team Memebers:
 Mark Black,
 Tao Xie,  
 Abdulrahman Alharbi,
+Brendan Szefinski
 
 Git Commands:
 
