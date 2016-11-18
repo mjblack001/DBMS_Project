@@ -522,7 +522,7 @@ CREATE TABLE `student` (
 INSERT INTO `student` (`SID`, `SFName`, `SLName`, `SEmail`, `IsTutor`, `Username`) VALUES
 (1, 'Tao', 'Xie', 'tx123@gmail.com', 1, 'Tx123'),
 (2, 'Abdul', 'Alharbi', 'aa123@gmail.com', 1, 'aa123'),
-(3, 'Mark', 'Black', 'mk123@gmail.com', 0, 'mk123'),
+(3, 'Mark', 'Black', 'mblackisthebest@gmail.com', 0, 'mk123'),
 (4, 'Brendan', 'Szefinski', 'bs999@gmail.com', 0, 'bs999'),
 (5, 'Sarah', 'Cooney', 'sc923@gmail.com', 1, 'sc923'),
 (6, 'Seth', 'Fields', 'sf492@gmail.com', 0, 'sf492'),
