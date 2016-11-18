@@ -560,11 +560,11 @@ INSERT INTO `subject` (`SubjectID`, `SubjectName`, `AdminID`) VALUES
 ('MF', 'Music, Theatre, Film', 18);
 ('MK', 'Marketing', 19);
 ('AC', 'Accounting', 20);
-('EC', 'Economics', 21);
-('ES', 'Environmental Science', 1);
-('FI', 'Finance', 2);
-('HI', 'History', 3);
-('PO', 'Political Science', 4);
+('EC', 'Economics', 1);
+('ES', 'Environmental Science', 2);
+('FI', 'Finance', 3);
+('HI', 'History', 4);
+('PO', 'Political Science', 5);
 
 
 -- --------------------------------------------------------
