@@ -165,12 +165,12 @@ INSERT INTO `course` (`CourseID`, `CourseName`, `AdminID`, `SubjectID`) VALUES
 (185, 'Abnormal Psychology', 9, 'PS'),
 (186, 'Clinical Psychology', 9, 'PS'),
 (187, 'Psychological Assessment', 9, 'PS'),
-(188, 'Comparative Religion', 10, 'RE',)
+(188, 'Comparative Religion', 10, 'RE'),
 (189, 'Faith, Justice, and the Catholic Tradition', 10, 'RE'),
 (190, 'Hebrew Bible', 10, 'RE'),
 (191, 'Israelite Religion', 10, 'RE'),
 (192, 'Judaism', 10, 'RE'),
-(193, 'Islam', 10 'RE'),
+(193, 'Islam', 10, 'RE'),
 (194, 'Hinduism', 10, 'RE'),
 (195, 'African and Caribbean Religions', 10, 'RE'),
 (196, 'Indian Buddhism', 10, 'RE'),
@@ -655,7 +655,6 @@ CREATE TABLE `teach` (
 -- Dumping data for table `teach`
 --
 
-INSERT INTO `teach` (`SID`, `CourseID`) VALUES
 INSERT INTO `teach` (`SID`, `CourseID`) VALUES
 (1,135),
 (23,220),
