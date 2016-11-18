@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2016 at 01:21 AM
+-- Generation Time: Nov 17, 2016 at 02:53 PM
 -- Server version: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -348,9 +348,6 @@ INSERT INTO `feedback` (`FeedID`, `Comment`, `Date`) VALUES
 (19,'meh','1/3/2015'),
 (20,'kinda smelly','8/21/2016');
 
-
-
-
 --
 -- Table structure for table `feedback_rate`
 --
@@ -384,6 +381,7 @@ INSERT INTO `feedback_rate` (`FeedID`, `Rate`) VALUES
 (19,3),
 (20,2);
 
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `login`
@@ -457,8 +455,6 @@ CREATE TABLE `preview` (
   `FeedID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
-
 INSERT INTO `preview` (`SID`, `FeedID`) VALUES
 (1, 1),
 (23, 2),
@@ -480,6 +476,7 @@ INSERT INTO `preview` (`SID`, `FeedID`) VALUES
 (22, 18),
 (19, 19),
 (9, 20);
+
 -- --------------------------------------------------------
 
 --
@@ -516,6 +513,7 @@ INSERT INTO `requesttutoron` (`CourseID`, `SID`) VALUES
 (144,13),
 (239,15),
 (298,16);
+
 -- --------------------------------------------------------
 
 --
@@ -579,32 +577,31 @@ CREATE TABLE `subject` (
 --
 
 INSERT INTO `subject` (`SubjectID`, `SubjectName`, `AdminID`) VALUES
-('CS', 'Computer Science', 9);
-('MA', 'Mathematics', 2);
-('AS', 'Actuarial Science', 3);
-('BI', 'Biology', 4);
-('CH', 'Chemistry', 5);
-('PH', 'Physics', 6);
-('SO', 'Sociology', 7);
-('PL', 'Philosophy', 8);
-('PS', 'Psycology', 9);
-('RE', 'Religion', 10);
-('EN', 'English', 11);
-('FR', 'French', 12);
-('SP', 'Spanish', 13);
-('JA', 'Japanese', 14);
-('GE', 'German', 15);
-('LA', 'Latin', 16);
-('CA', 'Classics', 17);
-('MF', 'Music, Theatre, Film', 18);
-('MK', 'Marketing', 19);
-('AC', 'Accounting', 20);
-('EC', 'Economics', 1);
-('ES', 'Environmental Science', 2);
-('FI', 'Finance', 3);
-('HI', 'History', 4);
+('CS', 'Computer Science', 9),
+('MA', 'Mathematics', 2),
+('AS', 'Actuarial Science', 3),
+('BI', 'Biology', 4),
+('CH', 'Chemistry', 5),
+('PH', 'Physics', 6),
+('SO', 'Sociology', 7),
+('PL', 'Philosophy', 8),
+('PS', 'Psycology', 9),
+('RE', 'Religion', 10),
+('EN', 'English', 11),
+('FR', 'French', 12),
+('SP', 'Spanish', 13),
+('JA', 'Japanese', 14),
+('GE', 'German', 15),
+('LA', 'Latin', 16),
+('CA', 'Classics', 17),
+('MF', 'Music, Theatre, Film', 18),
+('MK', 'Marketing', 19),
+('AC', 'Accounting', 20),
+('EC', 'Economics', 1),
+('ES', 'Environmental Science', 2),
+('FI', 'Finance', 3),
+('HI', 'History', 4),
 ('PO', 'Political Science', 5);
-
 
 -- --------------------------------------------------------
 
@@ -659,6 +656,7 @@ CREATE TABLE `teach` (
 --
 
 INSERT INTO `teach` (`SID`, `CourseID`) VALUES
+INSERT INTO `teach` (`SID`, `CourseID`) VALUES
 (1,135),
 (23,220),
 (5,118),
@@ -691,7 +689,6 @@ CREATE TABLE `write_tb` (
   `FeedID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
 INSERT INTO `write_tb` (`SID`, `FeedID`) VALUES
 (3,1),
 (4,2),
@@ -713,6 +710,7 @@ INSERT INTO `write_tb` (`SID`, `FeedID`) VALUES
 (13,18),
 (15,19),
 (16,20);
+
 --
 -- Indexes for dumped tables
 --
@@ -722,7 +720,7 @@ INSERT INTO `write_tb` (`SID`, `FeedID`) VALUES
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`AdminID`),
-  ADD UNIQUE KEY `AdminEmail` (`AdminEmail`),
+  ADD KEY `AdminEmail` (`AdminEmail`),
   ADD KEY `Username` (`Username`);
 
 --
@@ -730,7 +728,7 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `course`
   ADD PRIMARY KEY (`CourseID`),
-  ADD UNIQUE KEY `CourseName` (`CourseName`),
+  ADD KEY `CourseName` (`CourseName`),
   ADD KEY `AdminID` (`AdminID`),
   ADD KEY `SubjectID` (`SubjectID`);
 
@@ -772,7 +770,7 @@ ALTER TABLE `requesttutoron`
 --
 ALTER TABLE `student`
   ADD PRIMARY KEY (`SID`),
-  ADD UNIQUE KEY `SEmail` (`SEmail`),
+  ADD KEY `SEmail` (`SEmail`),
   ADD KEY `Username` (`Username`);
 
 --
@@ -780,7 +778,7 @@ ALTER TABLE `student`
 --
 ALTER TABLE `subject`
   ADD PRIMARY KEY (`SubjectID`),
-  ADD UNIQUE KEY `SubjectName` (`SubjectName`),
+  ADD KEY `SubjectName` (`SubjectName`),
   ADD KEY `AdminID` (`AdminID`);
 
 --
@@ -822,77 +820,7 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `student`
 --
 ALTER TABLE `student`
-  MODIFY `SID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `admin`
---
-ALTER TABLE `admin`
-  ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `login` (`Username`);
-
---
--- Constraints for table `course`
---
-ALTER TABLE `course`
-  ADD CONSTRAINT `course_ibfk_1` FOREIGN KEY (`AdminID`) REFERENCES `admin` (`AdminID`),
-  ADD CONSTRAINT `course_ibfk_2` FOREIGN KEY (`SubjectID`) REFERENCES `subject` (`SubjectID`);
-
---
--- Constraints for table `feedback_rate`
---
-ALTER TABLE `feedback_rate`
-  ADD CONSTRAINT `feedback_rate_ibfk_1` FOREIGN KEY (`FeedID`) REFERENCES `feedback` (`FeedID`);
-
---
--- Constraints for table `preview`
---
-ALTER TABLE `preview`
-  ADD CONSTRAINT `preview_ibfk_1` FOREIGN KEY (`SID`) REFERENCES `student` (`SID`),
-  ADD CONSTRAINT `preview_ibfk_2` FOREIGN KEY (`FeedID`) REFERENCES `feedback` (`FeedID`);
-
---
--- Constraints for table `requesttutoron`
---
-ALTER TABLE `requesttutoron`
-  ADD CONSTRAINT `requesttutoron_ibfk_1` FOREIGN KEY (`CourseID`) REFERENCES `course` (`CourseID`),
-  ADD CONSTRAINT `requesttutoron_ibfk_2` FOREIGN KEY (`SID`) REFERENCES `student` (`SID`);
-
---
--- Constraints for table `student`
---
-ALTER TABLE `student`
-  ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`Username`) REFERENCES `login` (`Username`);
-
---
--- Constraints for table `subject`
---
-ALTER TABLE `subject`
-  ADD CONSTRAINT `subject_ibfk_1` FOREIGN KEY (`AdminID`) REFERENCES `admin` (`AdminID`);
-
---
--- Constraints for table `taughtby`
---
-ALTER TABLE `taughtby`
-  ADD CONSTRAINT `taughtby_ibfk_1` FOREIGN KEY (`SID_1`) REFERENCES `student` (`SID`),
-  ADD CONSTRAINT `taughtby_ibfk_2` FOREIGN KEY (`TaughtBySID_2`) REFERENCES `student` (`SID`);
-
---
--- Constraints for table `teach`
---
-ALTER TABLE `teach`
-  ADD CONSTRAINT `teach_ibfk_1` FOREIGN KEY (`SID`) REFERENCES `student` (`SID`),
-  ADD CONSTRAINT `teach_ibfk_2` FOREIGN KEY (`CourseID`) REFERENCES `course` (`CourseID`);
-
---
--- Constraints for table `write_tb`
---
-ALTER TABLE `write_tb`
-  ADD CONSTRAINT `write_tb_ibfk_1` FOREIGN KEY (`SID`) REFERENCES `student` (`SID`),
-  ADD CONSTRAINT `write_tb_ibfk_2` FOREIGN KEY (`FeedID`) REFERENCES `feedback` (`FeedID`);
-
+  MODIFY `SID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
