@@ -640,6 +640,29 @@ CREATE TABLE `write_tb` (
   `FeedID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
+INSERT INTO `teach` (`SID`, `FeedID`) VALUES
+(3,1),
+(4,2),
+(6,3),
+(10,4),
+(11,5),
+(12,6),
+(13,7),
+(15,8),
+(16,9),
+(20,10),
+(24,11),
+(25,12),
+(3,13),
+(4,14),
+(6,15),
+(10,16),
+(11,17),
+(12,17),
+(13,18),
+(15,19),
+(16,20);
 --
 -- Indexes for dumped tables
 --
