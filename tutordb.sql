@@ -641,7 +641,7 @@ CREATE TABLE `write_tb` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-INSERT INTO `teach` (`SID`, `FeedID`) VALUES
+INSERT INTO `write_tb` (`SID`, `FeedID`) VALUES
 (3,1),
 (4,2),
 (6,3),
