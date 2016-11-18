@@ -540,31 +540,31 @@ CREATE TABLE `subject` (
 --
 
 INSERT INTO `subject` (`SubjectID`, `SubjectName`, `AdminID`) VALUES
-('CS', 'Computer Science', 1);
-('MA', 'Mathematics', 1);
-('AS', 'Actuarial Science', 1);
-('BI', 'Biology', 1);
-('CH', 'Chemistry', 1);
-('PH', 'Physics', 1);
-('SO', 'Sociology', 1);
-('PL', 'Philosophy', 1);
-('PS', 'Psycology', 1);
-('RE', 'Religion', 1);
-('EN', 'English', 1);
-('FR', 'French', 1);
-('SP', 'Spanish', 1);
-('JA', 'Japanese', 1);
-('GE', 'German', 1);
-('LA', 'Latin', 1);
-('CA', 'Classics', 1);
-('MF', 'Music, Theatre, Film', 1);
-('MK', 'Marketing', 1);
-('AC', 'Accounting', 1);
-('EC', 'Economics', 1);
+('CS', 'Computer Science', 9);
+('MA', 'Mathematics', 2);
+('AS', 'Actuarial Science', 3);
+('BI', 'Biology', 4);
+('CH', 'Chemistry', 5);
+('PH', 'Physics', 6);
+('SO', 'Sociology', 7);
+('PL', 'Philosophy', 8);
+('PS', 'Psycology', 9);
+('RE', 'Religion', 10);
+('EN', 'English', 11);
+('FR', 'French', 12);
+('SP', 'Spanish', 13);
+('JA', 'Japanese', 14);
+('GE', 'German', 15);
+('LA', 'Latin', 16);
+('CA', 'Classics', 17);
+('MF', 'Music, Theatre, Film', 18);
+('MK', 'Marketing', 19);
+('AC', 'Accounting', 20);
+('EC', 'Economics', 21);
 ('ES', 'Environmental Science', 1);
-('FI', 'Finance', 1);
-('HI', 'History', 1);
-('PO', 'Political Science', 1);
+('FI', 'Finance', 2);
+('HI', 'History', 3);
+('PO', 'Political Science', 4);
 
 
 -- --------------------------------------------------------
