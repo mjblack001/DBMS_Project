@@ -27,6 +27,7 @@
 	</select>
 	</div>
 	<br>
+	
 	<div class="course">
 		<label>Course: </label>
 		<select name="subject" id="courseList">
@@ -52,11 +53,6 @@
 				$("#courseList").html(data);
 			}
 		});
-	}
-	
-<<<<<<< HEAD
-</script>
-=======
+	}	
 </script>
 
->>>>>>> 9ccb30fc1497f271c62652a9998dc6e7d1946530
