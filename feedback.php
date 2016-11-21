@@ -1,27 +1,40 @@
 <?php
-	require "master_student.php";
-?>
+class Feedback {
 
-<div class="container">
-
-<form action="" method="post">
-	<div class="form-inline">
-		<p><h2>You will write feedback about...</h2><br></p>
-	</div>
+	private $comment;
+	private $date;
+	private $rating;
 	
-	<div class="textarea form-group col-sm-12 col-md-8">
-		<label><label style="color:red">*</label> Comment (should be no more than 250 characters):</label>
-		<textarea name="comment" class="form-control" required></textarea>
-		<h3>Please rate your tutor</h3>
-		<input type="radio" name="rate" value="male" checked> 1
-		<input type="radio" name="rate" value="female"> 2
-		<input type="radio" name="rate" value="other"> 3
-		<input type="radio" name="rate" value="other"> 4
-		<input type="radio" name="rate" value="other"> 5
-	</div>
-</form>
-</div>
+	public function __construct($comment, $date, $rating) {
+		$this->comment = $comment;
+		$this->rating = $rating;
+		$this->date = $date;
+	}
+	
+	public function getComment() {
+		return $this->comment;
+	}
+	
+	public function getDate() {
+		return $this->date;
+	}
+	
+	public function getRating() {
+		return $this->rating;
+	}
+	
+	public function setComment($comment) {
+		$this->comment = $comment;
+	}
+	
+	public function setDate($date) {
+		$this->date = $date;
+	}
+	
+	public function setRating($rating) {
+		$this->rating = $rating;
+	}
 
-<?php
-	require "masterFooter.php";
+	
+}
 ?>
