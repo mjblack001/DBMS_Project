@@ -9,7 +9,7 @@
 		
 		foreach ($results as $course) {
 			?>
-			<option value="<?php echo $course["courseID"]; ?>"><?php echo $course["CourseName"]; ?></option>
+			<option value="<?php echo $course["CourseID"]; ?>"><?php echo $course["CourseName"]; ?></option>
 			<?php
 		}
 	}
