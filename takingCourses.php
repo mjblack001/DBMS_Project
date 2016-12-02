@@ -58,9 +58,6 @@ $dpassword = 'root';
 $database = 'tutordb';
 $connection = mysql_connect($localhost , $dusername , $dpassword);
 mysql_select_db($database, $connection);
-//if ($connection->connect_error) {
-//    die("Connection failed: " . $conn->connect_error);
-//} 
 
 			$connect = new mysqli($localhost, $dusername, $dpassword, $database);
 
@@ -79,27 +76,22 @@ mysql_select_db($database, $connection);
 			}
 
 
-//$mail =  $_SESSION['login_user'] ; 
-$que =  " SELECT DISTINCT s.SFName as fname, s.SLName as lname, s2.SID as sid, s2.SFName as Tfname, s2.SLName as Tlname, c.CourseID as courseID, c.CourseName as courseName, sub.SubjectID as subjectID
-		  FROM student s, student s2, course c, subject sub, requesttutoron r, teach t
-		  WHERE s.SID = r.SID AND
-				c.CourseID = r.CourseID AND
-				c.SubjectID = sub.SubjectID AND
-				s2.SID = t.SID AND
-				t.CourseID = c.CourseID AND
+
+$que =  " SELECT s.SFName as fname, s.SLName as lname, s.SID as studentID, s2.SID as sid, s2.SFName as Tfname, s2.SLName as Tlname, c.CourseID as courseID, c.CourseName as courseName, sub.SubjectID as subjectID
+		  FROM student s, student s2, course c, taughtby tby, subject sub
+		  WHERE s.SID = tby.SID_1 AND
+			    s2.SID = tby.TaughtBySID_2 AND
+			    c.CourseID = tby.CourseID AND
+			    c.SubjectID = sub.SubjectID AND
 				s.Username = '$username'";
 
 $record = mysql_query($que) or print(mysql_error());
-//echo $record;
 
-
-//iterate over all the rows
 if($record === FALSE){
 echo $record;
 
 }
 if(mysql_num_rows($record) > 0 ){
-   // echo mysql_num_rows($record);
    
 		$counter = 0;
 	
@@ -117,7 +109,8 @@ if(mysql_num_rows($record) > 0 ){
  while($row = mysql_fetch_array($record)) {
 	   //echo mysql_num_rows($record);
        
-	   $sid = $row['sid'];
+	   $tSid = $row['sid'];
+	   $studentID = $row['studentID'];
 	   $fname = $row['fname'];
 	   $lname = $row['lname'];
 	   $tfname = $row['Tfname'];
@@ -132,8 +125,29 @@ if(mysql_num_rows($record) > 0 ){
  		echo "<td>".$courseName."</td>";
 		echo "<td>".$subjectID."</td>";
 		echo "<td>".$tfname." ".$tlname."</td>";
-		echo "<td>". "<a href = 'feedback.php?WriteFeed=$row[sid]'>Write Feedback</a>".  "</td>";
-		echo "<td>". "<a href = 'delete_course_take.php?Delete=$row[courseID]'>Delete</a>".  "</td>";
+		echo "<td>". "
+						<form action='feedback.php' method='post'>
+							<input type='submit' value='Write Feedback'>
+							<input type='hidden' name='tSid' id='tSid' value= '$tSid'>
+							<input type='hidden' name='studentID' id='studentID' value= '$studentID'>
+							<input type='hidden' name='tfname' id='tfname' value= '$tfname'>
+							<input type='hidden' name='tlname' id='tlname' value= '$tlname'>
+							<input type='hidden' name='courseID' id='courseID' value= '$courseID'>
+							<input type='hidden' name='courseName' id='courseName' value= '$courseName'>
+						</form>".  
+			 "</td>";
+		echo "<td>". "<form action='delete_course_take.php' method='post' >
+							<input type='submit' value='Delete' onclick='return checkDelete();'>
+							<input type='hidden' name='tSid' id='tSid' value= '$tSid'>
+							<input type='hidden' name='studentID' id='studentID' value= '$studentID'>
+							<input type='hidden' name='courseID' id='courseID' value= '$courseID'>
+						</form>
+						<script language='JavaScript' type='text/javascript'>
+							function checkDelete()
+							{
+								return confirm('Are you sure to delete this course from your list?');
+							}
+						</script>".  "</td>";
 		echo "</tr>";
 			    
    }

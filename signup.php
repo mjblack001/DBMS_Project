@@ -32,7 +32,7 @@ else
 		{
 				//echo "Singup Successfully";
 				echo "<script>
-						alert('Your account has been created \n Please use your username and password to login');
+						alert('Your account has been created Please use your username and password to login');
 						window.location.href='http://localhost:8080/TutorProject/login.php';
 					</script>";
 			
