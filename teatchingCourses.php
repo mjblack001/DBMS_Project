@@ -21,7 +21,7 @@
 <style>
 table {
     border-collapse: collapse;
-    width: 50%;
+    width: 70%;
 }
 
 th, td {
@@ -37,7 +37,8 @@ th {
     color: white;
 }
 </style>
-<?php       
+<?php     
+	include_once('mysql_conn.php');
 	require "master_student.php";
 ?>
  
@@ -58,29 +59,8 @@ $dpassword = 'root';
 $database = 'tutordb';
 $connection = mysql_connect($localhost , $dusername , $dpassword);
 mysql_select_db($database, $connection);
-//if ($connection->connect_error) {
-//    die("Connection failed: " . $conn->connect_error);
-//} 
 
-			$connect = new mysqli($localhost, $dusername, $dpassword, $database);
-
-			if ($connect->connect_error) 
-			{
-				die("Connection failed: " . $connect->connect_error);
-			}
-
-			$query = "Select * FROM `course`";
-			$res = mysqli_query($connect, $query);
-
-			$options = "";
-			while($row = mysqli_fetch_array($res))
-			{
-				$options = $options."<option>$row[1]</option>";
-			}
-
-
-//$mail =  $_SESSION['login_user'] ; 
-$que =  " SELECT s.SFName as 'fname', s.SLName as 'lname', c.CourseID as 'courseID', c.CourseName as 'courseName', sub.SubjectID as 'subjectID', s.Username
+$que =  " SELECT s.SID as sid, s.SFName as 'fname', s.SLName as 'lname', c.CourseID as 'courseID', c.CourseName as 'courseName', sub.SubjectID as 'subjectID', s.Username
 		  FROM student s, course c, subject sub, teach t
 		  WHERE s.SID = t.SID AND
 				t.CourseID = c.CourseID AND
@@ -88,7 +68,6 @@ $que =  " SELECT s.SFName as 'fname', s.SLName as 'lname', c.CourseID as 'course
 				s.Username = '$username'";
 
 $record = mysql_query($que) or print(mysql_error());
-//echo $record;
 
 
 //iterate over all the rows
@@ -97,7 +76,6 @@ echo $record;
 
 }
 if(mysql_num_rows($record) > 0 ){
-   // echo mysql_num_rows($record);
    
 		$counter = 0;
 	
@@ -107,13 +85,14 @@ if(mysql_num_rows($record) > 0 ){
 		echo "<th>Course ID</th>";
 		echo "<th>Course Name</th>";
 		echo "<th>Subject ID</th>";
+		echo "<th>View My Student</th>";
 		echo "<th>Delete</th>";
 		echo "</tr>";
 
  while($row = mysql_fetch_array($record)) {
-	   //echo mysql_num_rows($record);
        
 	   
+	   $sid = $row['sid'];
 	   $fname = $row['fname'];
 	   $lname = $row['lname'];
 	   $courseID = $row['courseID'];
@@ -125,78 +104,113 @@ if(mysql_num_rows($record) > 0 ){
 		echo "<td>".$courseID."</td>";
  		echo "<td>".$courseName."</td>";
 		echo "<td>".$subjectID."</td>";
-		echo "<td>". "<a href = 'delete_course_teach.php?Delete=$row[courseID]'>Delete</a>".  "</td>";
+		echo "<td>". "<form action='view_my_student.php' method='post' >
+							<input type='submit' value='View My Student'>
+							<input type='hidden' name='tSid' id='tSid' value= '$sid'>
+							<input type='hidden' name='courseID' id='courseID' value= '$courseID'>
+						</form>".  
+			 "</td>";
+		echo "<td>". "<form action='delete_course_teach.php' method='post' >
+							<input type='submit' value='Delete' onclick='return checkDelete();'>
+							<input type='hidden' name='tSid' id='tSid' value= '$sid'>
+							<input type='hidden' name='courseID' id='courseID' value= '$courseID'>
+						</form>
+						<script language='JavaScript' type='text/javascript'>
+							function checkDelete()
+							{
+								return confirm('Are you sure to delete this course?');
+							}
+						</script>".  
+			  "</td>";
 		echo "</tr>";
 			    
    }
  	echo "<h2>$fname $lname There are ($counter) course you teach</h2>";
    		echo "</table>";
-		
-	echo "</div>
-	
-	
+?>
+
 <div>
       <br><br>
-      <div class='container' style = 'background:#f2f2f2'>   
-          <form action='#' method='post'>
-          <table align='left'>
+      <div class="container" style = "background:#f2f2f2">   
+          <form action="add_new_courseTeach.php" method="post">
+          <table align="left">
 				<h2>ADD NEW COURSE TO TEACH</h2>
 				
 				<tr>
-					<td>Choose Course<td>
-					<td><select name='teachCourse' id='teachCourse'>$options</select></td>
+					<td>Choose Subject</td>
+					<td>
+						<div class="subject">
+							<select name="subject" onchange="getSubjectId(this.value);">
+							<option value="">Please Select Subject</option>
+							<?php
+								$query = "SELECT * FROM subject";
+								$results = mysqli_query($con, $query);
+								
+								foreach ($results as $subject) {
+								?>
+								<option value="<?php echo $subject['SubjectID']; ?>"><?php echo $subject['SubjectName']; ?></option>
+								<?php 
+									}
+								?>
+							</select>
+						</div>
+					</td>
 				</tr>
 				
 				<tr>
-					<td colspan='3'><button type='submit' class='button button-block' />Add New Course To TEACH</button><td>
+					<td>Choose Course</td>
+					<td>
+						<div class="course">
+							<select name="course" id="courseList">
+								<option value="">Please Select Course</option>
+							</select>
+						</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="3"><button type="submit" class="button button-block" />Add New Course To TEACH</button></td>
 				</tr>
           </table>
+				<input type="hidden" name="sid" id="sid" value="<?php echo $sid; ?>">
           </form>
 	   </div>
 </div>
 
-<div class='container'>
-</div>";
-
+<?php
 }
 
 
 else
 {
-	echo "<h1>You do not have any course to teach <a href='apply.php'>Click here to apply</a></h1>";
+	echo "<h1>You do not have any course to teach <a href='add_new_post.php'>Click here to apply</a></h1>";
 }
 
 
-
-
-
 ?>
+</div>
+<br><br>	
+	
 
-</div>
-	
-	
-<!--<div>
-      <br><br>
-      <div class="container" style = "background:#f2f2f2">   
-          <form action="#" method="post">
-          <table align="left">
-				<h2>ADD NEW COURSE TO TEACH</h2>
-				
-				<tr>
-					<td>Choose Course<td>
-					<td><select name="teachCourse" id="teachCourse"><?php //echo $options; ?></select></td>
-				</tr>
-				
-				<tr>
-					<td colspan="3"><button type="submit" class="button button-block" />Add New Course To TEACH</button><td>
-				</tr>
-          </table>
-          </form>
-	   </div>
-</div>
 
 <div class="container">
-</div>-->
+</div>
+
+
+<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+
+<script>
+	function getSubjectId(val) {
+		$.ajax({
+			type: "POST",
+			url: "getdata.php",
+			data: "SubjectID=" + val,
+			success: function(data) {
+				$("#courseList").html(data);
+			}
+		});
+	}	
+</script>
 
 <?php
 	require "masterFooter.php";

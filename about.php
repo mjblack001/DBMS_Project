@@ -78,6 +78,7 @@
                                     </div><!-- /.page-header-inner -->
                                 </div><!-- /.page-header -->
 
+								
                                 <div class="row">
                                                                 <div class="team col-xs-12 col-sm-6 col-md-3">
                                     <div class="inner">
@@ -113,44 +114,11 @@
                                         </div><!-- /.social -->
                                     </div>
                                 </div><!-- /.team -->
-                                                                <div class="team col-xs-12 col-sm-6 col-md-3">
-                                    <div class="inner">
-                                        <div class="picture">
-                                            <img src="assets/img/alharbi.JPG" alt="#">
-                                        </div><!-- /.picture -->
-                                    </div><!-- /.inner -->
-
-                                    <div class="content-inner">
-                                        <h2>Abdulrahman Alharbi</h2>
-                                        <h4>Undergraduate Student</h4>
-                                        <div class="social">
-                                            <div class="inner">
-                                                
-                                            </div><!-- /.inner -->
-                                        </div><!-- /.social -->
-                                    </div>
-                                </div><!-- /.team -->
-								<div class="team col-xs-12 col-sm-6 col-md-3">
-                                    <div class="inner">
-                                        <div class="picture">
-                                            <img src="assets/img/alharbi.JPG" alt="#">
-                                        </div><!-- /.picture -->
-                                    </div><!-- /.inner -->
-
-                                    <div class="content-inner">
-                                        <h2>Abdulrahman Alharbi</h2>
-                                        <h4>Undergraduate Student</h4>
-                                        <div class="social">
-                                            <div class="inner">
-                                                
-                                            </div><!-- /.inner -->
-                                        </div><!-- /.social -->
-                                    </div>
-                                </div><!-- /.team -->
+                                                                
                                     
-									</div><!-- /.inner --
-
-                                     -->
+									</div><!-- /.inner -->
+								
+                                     
                                     </div>
                             </div><!-- /.block -->
                         </div>
@@ -162,7 +130,6 @@
     </div><!-- /.section -->
 </div>
 <!-- /#content -->
-
 <?php
 	require "masterFooter.php";
 ?>
