@@ -1,7 +1,7 @@
 <style>
 table {
     border-collapse: collapse;
-    width: 40%;
+    width: 70%;
 }
 
 th, td {
@@ -9,7 +9,7 @@ th, td {
     padding: 8px;
 }
 
-tr:nth-child(even){background-color: #f2f2f2}
+tr{background-color: #f2f2f2}
 tr:hover {background-color: #f5f5f5}
  
 th {
@@ -29,38 +29,49 @@ th {
 	if($record === FALSE){
 		echo $record;
 	}
-	echo '<br><br>';
+	echo "<div style='background-image: url(assets/img/TutorBackground.jpg); background-repeat:no-repeat; height:100%'><br><br>";
 	if(mysql_num_rows($record) > 0 ){
-<<<<<<< HEAD
+		
+		echo "<div class='container'>";
    
 		$counter = 0;
-		
-		echo "<div><h2>Following is the searching result</h2><br></div>";
+		if($searchTarget == "")
+		{
+			echo "<div><h2>Following are all tutors </h2><br></div>";
+		}
+		else
+		{
+			echo "<div><h2>Following is the searching result about [ $searchTarget ]</h2><br></div>";
+		}
 		
 		echo "<table align='center'>
 				<tr>
-					<th><b>CourseID</b></th>
-					<th><b>CourseName</b></th>
+					<th><b>Course</b></th>
+					<th><b>Subject ID</b></th>
+					<th><b>Subject Name</b></th>
+					<th><b>Tutor Name</b></th>
 				</tr>";
 		
-=======
-   	 			
->>>>>>> 9ccb30fc1497f271c62652a9998dc6e7d1946530
 		while($row = mysql_fetch_array($record)) {
-       
-		$courseID = $row['CourseID'];
-		$courseName = $row['CourseName'];
-		$adminID = $row['AdminID'];
-		$subjectID = $row['SubjectID'];   
+			
+			$tutorID = $row['tSid'];
+			$courseID = $row['courseID'];
+			$courseName = $row['courseName'];
+			$subjectID = $row['subjectID'];
+			$subjectName = $row['subjectName'];
+			$Tfname = $row['Tfname'];
+			$Tlname = $row['Tlname'];
 
-		echo
-			"<tr>
-			<td>$courseID</td>
-			<td>$courseName</td>
-			</tr>";
+			echo
+				"<tr>
+					<td>$courseName</td>
+					<td>$subjectID</td>
+					<td>$subjectName</td>
+					<td><a href = 'tutorFeedback.php?Preview=$tutorID'>$Tfname $Tlname</a></td>
+				</tr>";
 		}
 	}
-	echo "</table><br><br>";
+	echo "</table></div><br><br></div>";
 	
 	require 'masterFooter.php';
 	

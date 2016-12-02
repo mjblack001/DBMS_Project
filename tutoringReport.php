@@ -21,7 +21,7 @@
 <style>
 table {
     border-collapse: collapse;
-    width: 40%;
+    width: 90%;
 }
 
 th, td {
@@ -67,13 +67,17 @@ mysql_select_db($database, $connection);
 
 
 //$mail =  $_SESSION['login_user'] ; 
-$que =  "SELECT DISTINCT s2.SFName as student, s.SFName as tutor, co.CourseName as course, sub.SubjectName as subject
+$que =  "SELECT DISTINCT s.SFName as tutor, s.SEmail as tEmail, s2.SFName as student, s2.SEmail as sEmail, co.CourseName as course, sub.SubjectName as subject
 		FROM student s, student s2, subject sub, course co, teach t, requesttutoron r, taughtby tby
 		WHERE s.SID = t.SID AND
-		t.CourseID = co.CourseID AND
-		s2.SID = r.SID AND 
-		r.CourseID = co.CourseID AND
-		co.SubjectID = sub.SubjectID";
+        t.CourseID = co.CourseID AND
+        s.SID = tby.TaughtBySID_2 AND
+        s2.SID = tby.SID_1 AND
+        s2.SID = r.SID AND 
+        r.CourseID = co.CourseID AND
+        co.SubjectID = sub.SubjectID
+		ORDER BY s2.SFName, s.SFName, sub.SubjectID, co.CourseName";
+		
 
 $record = mysql_query($que) or print(mysql_error());
 //echo $record;
@@ -96,6 +100,8 @@ if(mysql_num_rows($record) > 0 ){
 		echo "<th>Tutor</th>";
 		echo "<th>Course Name</th>";
 		echo "<th>Subject</th>";
+		echo "<th>Contact Tutor</th>";
+		echo "<th>Contact Student</th>";
 		echo "</tr>";
 
  while($row = mysql_fetch_array($record)) {
@@ -103,6 +109,8 @@ if(mysql_num_rows($record) > 0 ){
        
 	   $student = $row['student'];
        $tutor = $row['tutor'];
+	   $sEmail = $row['sEmail'];
+       $tEmail = $row['tEmail'];
 	   $course = $row['course'];
 	   $subject = $row['subject'];
 	   $counter++;
@@ -112,11 +120,12 @@ if(mysql_num_rows($record) > 0 ){
  		echo "<td>".$tutor."</td>";
 		echo "<td>".$course."</td>";
 		echo "<td>".$subject."</td>";
-		//echo "<td>". "<a href = 'delete_course.php?Delete=$row[courseID]'>Delete</a>".  "</td>";
+		echo "<td>". "<a href = 'mailto:$tEmail'>Contact Tutor</a>".  "</td>";
+		echo "<td>". "<a href = 'mailto:$sEmail'>Contact Student</a>".  "</td>";
 		echo "</tr>";
 			    
    }
- 	echo "<h2>There are ($counter) Students</h2>";
+ 	echo "<h2>There are ($counter) tutoring activites</h2>";
    		echo "</table>";
 
 }
@@ -144,7 +153,7 @@ if(mysql_num_rows($record) > 0 ){
 </div>
 	
 <div>
-
+<br><br>
 </div>	
 
 <?php
