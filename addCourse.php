@@ -21,7 +21,7 @@
 <style>
 table {
     border-collapse: collapse;
-    width: 40%;
+    width: 70%;
 }
 
 th, td {
@@ -49,8 +49,6 @@ th {
 
 $username = $_SESSION['login_user'];
 
-// serve the page normally.
-
 
 $localhost = 'localhost';
 $dusername = 'root';
@@ -58,25 +56,16 @@ $dpassword = 'root';
 $database = 'tutordb';
 $connection = mysql_connect($localhost , $dusername , $dpassword);
 mysql_select_db($database, $connection);
-//if ($connection->connect_error) {
-//    die("Connection failed: " . $conn->connect_error);
-//} 
 
 
-//$mail =  $_SESSION['login_user'] ; 
 $que =  " SELECT courseID, courseName, subjectID FROM `course`";
-
 $record = mysql_query($que) or print(mysql_error());
-//echo $record;
 
-
-//iterate over all the rows
 if($record === FALSE){
 echo $record;
 
 }
 if(mysql_num_rows($record) > 0 ){
-   // echo mysql_num_rows($record);
    
 		$counter = 0;
 	
@@ -91,7 +80,6 @@ if(mysql_num_rows($record) > 0 ){
 		echo "</tr>";
 
  while($row = mysql_fetch_array($record)) {
-	   //echo mysql_num_rows($record);
        
 	   $courseID = $row['courseID'];
        $courseName = $row['courseName'];
@@ -103,7 +91,13 @@ if(mysql_num_rows($record) > 0 ){
  		echo "<td>".$courseName."</td>";
 		echo "<td>".$subjectID."</td>";
 		echo "<td>". "<a href = 'edit_course.php?Edit=$row[courseID]'>Edit</a>".  "</td>";
-		echo "<td>". "<a href = 'delete_course.php?Delete=$row[courseID]'>Delete</a>".  "</td>";
+		echo "<td>". "<a href = 'delete_course.php?Delete=$row[courseID]' onclick='return checkDelete()'>Delete</a>
+						<script language='JavaScript' type='text/javascript'>
+							function checkDelete()
+							{
+								return confirm('Are you soure to delete this course');
+							}
+						</script>"."</td>";
 		echo "</tr>";
 			    
    }
