@@ -53,8 +53,6 @@ th {
 
 	$username = $_SESSION['login_user'];
 
-	// serve the page normally.
-
 
 	$localhost = 'localhost';
 	$dusername = 'root';
@@ -62,45 +60,32 @@ th {
 	$database = 'tutordb';
 	$connection = mysql_connect($localhost , $dusername , $dpassword);
 	mysql_select_db($database, $connection);
-//if ($connection->connect_error) {
-//    die("Connection failed: " . $conn->connect_error);
-//} 
 
-//echo "1";
 if (isset($_GET['Edit']))
 {
 	
 	$subjectID = $_GET['Edit'];
 	$que = mysql_query("Select * FROM subject WHERE SubjectID = '$subjectID'");
 	$row = mysql_fetch_array($que);
-//$record = mysql_query($que) or print(mysql_error());
-//echo $record;
+
 }
-//echo "2";
+
 if (isset($_POST['subjectID']))
 {
-	//echo "3";
 	
 		$subjectOldID = $_POST["subjectIDOld"];
 		$subjectID = $_POST["subjectID"];
 		$subjectName = $_POST["subjectName"];
 		
-	
-		$que1 =  "UPDATE course SET subjectID ='$subjectID' where subjectID='$subjectOldID'";
-		$record1 = mysql_query($que1) or print(mysql_error());
-		
-		
+			
 		$que2 =  "UPDATE subject SET subjectID ='$subjectID', subjectName ='$subjectName' where subjectID='$subjectOldID'";
 		$record2 = mysql_query($que2) or print(mysql_error());
-		//header( "location: addSubject.php" );
 		
-		//echo "<meta http-equiv='refresh' content = '0;url=addSubject.php'>";
 		echo "<script>
 					alert('The subject has been updated successfully');
 					window.location.href='http://localhost:8080/TutorProject/addSubject.php';
 				</script>";
 
-//iterate over all the rows
 if($record2 === FALSE)
 
 echo $record2;

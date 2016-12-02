@@ -13,17 +13,10 @@ include('session_student.php');
 
     
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" media="screen, projection">
-	
-    
-    <link rel="stylesheet" type="text/css" href="libraries/pictopro-outline/pictopro-outline.css" media="screen, projection">
     <link rel="stylesheet" type="text/css" href="libraries/pictopro-normal/pictopro-normal.css" media="screen, projection">
-    <link rel="stylesheet" type="text/css" href="libraries/colorbox/colorbox.css" media="screen, projection">
-    <link rel="stylesheet" type="text/css" href="libraries/jslider/bin/jquery.slider.min.css" media="screen, projection">
     <link rel="stylesheet" type="text/css" href="assets/css/carat.css" media="screen, projection">
-
-    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:100,400,700,400italic,700italic" rel="stylesheet" type="text/css"  media="screen, projection">
-	<link rel="stylesheet" type="text/css" href="assets/css/search.css">
-
+	
+	
 <style>.tmvwidget{-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;width:248px;border-width:1px;}.tmvwidget .tmvwidget-header{-webkit-border-top-right-radius:5px;-moz-border-radius-topright:5px;border-top-right-radius:5px;-webkit-border-top-left-radius:5px;-moz-border-radius-topleft:5px;border-top-left-radius:5px;}
 .tmvwidget .tmvwidget-inner{-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;}
 </style>
@@ -88,11 +81,12 @@ include('session_student.php');
 						<ul class="regularmenu-inner">
 						<li><a href="teatchingCourses.php"><i class="icon icon-normal-file-text"></i> Preview Teaching Courses</a></li>
 						<li><a href="takingCourses.php"><i class="icon icon-normal-file-text"></i> Preview Taking Courses</a></li>
-						<li><a href="#"><i class="icon icon-normal-file-text"></i> Request Tutor</a></li>
+						<li><a href="requestTutor.php"><i class="icon icon-normal-file-text"></i> Request Tutor</a></li>
 						</ul><!-- /.regularmenu-inner -->
 						</div><!-- /.regularmenu -->
 						</li>
-						<li><a href="#"><i class="icon icon-normal-profile-checkbox"></i> Apply for tutoring</a></li>
+						<li><a href="add_new_post.php"><i class="icon icon-normal-profile-checkbox"></i> Apply for tutoring</a></li>
+						<li><a href="message.php"><i class="icon icon-normal-mail"></i>Messages</a></li>
 						<li><a href="myProfile.php"><i class="icon icon-normal-profile-checkbox"></i> My Profile</a></li>
 						</ul><!-- /.nav -->
 

@@ -101,7 +101,14 @@ if(mysql_num_rows($record) > 0 ){
 		echo "<td>".$subjectID."</td>";
  		echo "<td>".$subjectName."</td>";
 		echo "<td>". "<a href = 'edit_subject.php?Edit=$row[subjectID]'>Edit</a>".  "</td>";
-		echo "<td>". "<a href = 'delete_subject.php?Delete=$row[subjectID]'>Delete</a>".  "</td>";
+		echo "<td>". "<a href = 'delete_subject.php?Delete=$row[subjectID]' onclick='return checkDelete()'>Delete</a>
+						<script language='JavaScript' type='text/javascript'>
+							function checkDelete()
+							{
+								return confirm('Are you sure to delete this subject?');
+							}
+						</script>
+				".  "</td>";
 		echo "</tr>";
 			    
    }

@@ -21,27 +21,21 @@
 		$que =  " DELETE FROM subject WHERE subjectID = '$subjectID'";
 		$record = mysql_query($que) or print(mysql_error());
 		
-		$que2 =  " DELETE FROM course WHERE subjectID = '$subjectID'";
-		$record2 = mysql_query($que2) or print(mysql_error());
 		
+		if($record === FALSE)
+		{
+			
+			echo "<script>
+						alert('The subject cannot be deleted becouse it is a foriegn key on another table');
+						window.location.href='http://localhost:8080/TutorProject/addSubject.php';
+					</script>";
+		}
 		
-		
-		//echo "<meta http-equiv='refresh' content = '0;url=dealer.php'>";
 		
 		echo "<script>
 					alert('The subject has been deleted successfully');
 					window.location.href='http://localhost:8080/TutorProject/addSubject.php';
 				</script>";
-
-
 	}
 
-	//iterate over all the rows
-	if($record === FALSE)
-	{
-		//echo "3";
-		
-		//echo "VIN ". $vin;
-		echo $record;
-	}
 ?>

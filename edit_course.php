@@ -48,13 +48,7 @@ th {
 
 <?php
 
-
-
-
 	$username = $_SESSION['login_user'];
-
-	// serve the page normally.
-
 
 	$localhost = 'localhost';
 	$dusername = 'root';
@@ -62,46 +56,39 @@ th {
 	$database = 'tutordb';
 	$connection = mysql_connect($localhost , $dusername , $dpassword);
 	mysql_select_db($database, $connection);
-//if ($connection->connect_error) {
-//    die("Connection failed: " . $conn->connect_error);
-//} 
 
-//echo "1";
-if (isset($_GET['Edit']))
-{
-	
-	$courseID = $_GET['Edit'];
-	$que = mysql_query("Select * FROM course WHERE courseID = '$courseID'");
-	$row = mysql_fetch_array($que);
-//$record = mysql_query($que) or print(mysql_error());
-//echo $record;
-}
-//echo "2";
-if (isset($_POST['subjectID']))
-{
-	//echo "3";
-	
-		$subjectID = $_POST["subjectID"];
-		$courseOldID = $_POST["courseIDOld"];
-		$courseName = $_POST["courseName"];
+	if (isset($_GET['Edit']))
+	{
 		
+		$courseID = $_GET['Edit'];
+		$que = mysql_query("Select * FROM course WHERE courseID = '$courseID'");
+		$row = mysql_fetch_array($que);
+	}
 	
-		$que1 =  "UPDATE course SET CourseName ='$courseName' where CourseID='$courseOldID'";
-		$record1 = mysql_query($que1) or print(mysql_error());
+	if (isset($_POST['subjectID']))
+	{
 		
+			$subjectID = $_POST["subjectID"];
+			$courseNewID = $_POST["courseID"];
+			$courseOldID = $_POST["courseIDOld"];
+			$courseName = $_POST["courseName"];
+			
 		
-		//echo "<meta http-equiv='refresh' content = '0;url=addSubject.php'>";
-		echo "<script>
-					alert('The course has been updated successfully');
-					window.location.href='http://localhost:8080/TutorProject/addCourse.php';
-				</script>";
+			$que1 =  "UPDATE course SET CourseID ='$courseNewID', CourseName ='$courseName' where CourseID='$courseOldID'";
+			$record1 = mysql_query($que1) or print(mysql_error());
+			
+			
+			echo "<script>
+						alert('The course has been updated successfully');
+						window.location.href='http://localhost:8080/TutorProject/addCourse.php';
+					</script>";
 
-//iterate over all the rows
-if($record1 === FALSE)
+	//iterate over all the rows
+	if($record1 === FALSE)
 
-echo $record1;
+	echo $record1;
 
-}
+	}
 
 
 ?>
@@ -118,7 +105,7 @@ echo $record1;
 				</tr>
 				<tr>
 					<td>Course ID:</td>
-					<td><input type="text" name="courseID" id="courseID" value="<?php echo $row['CourseID']; ?>" class="form-control" required readonly>
+					<td><input type="text" name="courseID" id="courseID" value="<?php echo $row['CourseID']; ?>" class="form-control" required>
 						<input type="hidden" name="courseIDOld" id="courseIDOld" value="<?php echo $row['CourseID']; ?>">
 					</td>
 				</tr>
