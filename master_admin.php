@@ -13,16 +13,8 @@ include('session_admin.php');
 
     
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" media="screen, projection">
-	
-    
-    <link rel="stylesheet" type="text/css" href="libraries/pictopro-outline/pictopro-outline.css" media="screen, projection">
     <link rel="stylesheet" type="text/css" href="libraries/pictopro-normal/pictopro-normal.css" media="screen, projection">
-    <link rel="stylesheet" type="text/css" href="libraries/colorbox/colorbox.css" media="screen, projection">
-    <link rel="stylesheet" type="text/css" href="libraries/jslider/bin/jquery.slider.min.css" media="screen, projection">
     <link rel="stylesheet" type="text/css" href="assets/css/carat.css" media="screen, projection">
-
-    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:100,400,700,400italic,700italic" rel="stylesheet" type="text/css"  media="screen, projection">
-	<link rel="stylesheet" type="text/css" href="assets/css/search.css">
 
 <style>.tmvwidget{-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;width:248px;border-width:1px;}.tmvwidget .tmvwidget-header{-webkit-border-top-right-radius:5px;-moz-border-radius-topright:5px;border-top-right-radius:5px;-webkit-border-top-left-radius:5px;-moz-border-radius-topleft:5px;border-top-left-radius:5px;}
 .tmvwidget .tmvwidget-inner{-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px;}
